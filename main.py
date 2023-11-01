@@ -4,20 +4,15 @@ from Class.Reflector import Reflector
 
 enigma = Enigma()
 
-rotor_list = Rotor.get_rotor_list()
-reflector_list = Reflector.get_reflector_list()
-
 print('Choose rotor position between those (rotor are place from right to left):')
-for index, a in enumerate(rotor_list):
-    print('{0} : {1}'.format(index, a))
+print(*(f'{rotor.name} : {rotor.value}' for rotor in Rotor), sep='\n')
 rotor_place = input('Enter order with whitespace : ')
-enigma.set_initial_rotor_place(rotor_place, rotor_list)
+enigma.set_initial_rotor_place(rotor_place, Rotor)
 
 print('Choose rotor position between those (rotor are place from right to left):')
-for index, a in enumerate(reflector_list):
-    print('{0} : {1}'.format(index, a))
+print(*(f'{reflector.name} : {reflector.value}' for reflector in Reflector), sep='\n')
 reflector_choice = input('Enter order with whitespace : ')
-enigma.set_initial_reflector(reflector_choice, reflector_list)
+enigma.set_initial_reflector(reflector_choice, Reflector)
 
 plugin = input('Enter your pair to swap key with whitespace, 10 pair max (example : AE IO BD) : ')
 enigma.set_plugin_board(plugin)
