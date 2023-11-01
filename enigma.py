@@ -111,4 +111,4 @@ enigma.set_initial_rotor_position(rotor_pos)
 
 message = input('Enter your message without whitespace : ')
 
-enigma.output_message(message)
+print(enigma.output_message(message))
