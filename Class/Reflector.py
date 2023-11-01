@@ -1,4 +1,6 @@
-class Reflector:
+from enum import StrEnum
+
+class Reflector(StrEnum):
     UKW = 'QYHOGNECVPUZTFDJAXWMKISRBL'
     ETW = 'QWERTZUIOASDFGHJKPYXCVBNML'
     UKWK = 'IMETCGFRAYSQBZXWLHKDVUPOJN'
@@ -11,21 +13,4 @@ class Reflector:
     REFBTHIN = 'ENKQAUYWJICOPBLMDXZVFTHRGS'
     REFCTTHIN = 'RDOBJNTKVEHMLFCWZAXGYIPSUQ'
     REFETW = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-    @classmethod
-    def get_reflector_list(self) -> tuple:
-        return (
-            self.UKW,
-            self.ETW,
-            self.UKWK,
-            self.ETWK,
-            self.BETA,
-            self.GAMMA,
-            self.REFA,
-            self.REFB,
-            self.REFC,
-            self.REFBTHIN,
-            self.REFCTTHIN,
-            self.REFETW,
-        )
 

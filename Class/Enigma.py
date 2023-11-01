@@ -6,12 +6,12 @@ class Enigma:
         self.rotor_position = []
         self.reflector = []
 
-    def set_initial_rotor_place(self, rotor_list, rotor: tuple):
+    def set_initial_rotor_place(self, rotor_list, rotor):
         for r_p in rotor_list.split():
-            self.rotor_place.append(rotor.__getitem__(int(r_p)))
+            self.rotor_place.append(rotor[r_p])
 
-    def set_initial_reflector(self, choice, reflector: tuple):
-        self.reflector = reflector.__getitem__(int(choice))
+    def set_initial_reflector(self, choice, reflector):
+        self.reflector = reflector[choice]
 
     def set_plugin_board(self, plugin_list):
         if self.is_not_valid_plugin(plugin_list):
