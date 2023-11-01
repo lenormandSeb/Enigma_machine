@@ -63,7 +63,7 @@ class Enigma:
 
         return "".join(output)
 
-        def rotor(self, letter: str, iteration: int = 0, reflector: bool = False, revert: bool = False) -> str:
+    def rotor(self, letter: str, iteration: int = 0, reflector: bool = False, revert: bool = False) -> str:
         alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
         rotor_choice = self.rotor_place
