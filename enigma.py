@@ -48,9 +48,9 @@ class Enigma:
     def set_plain_message(self, plain_message: str):
         self.plainMessage = plain_message
 
-    def output_message(self):
+    def output_message(self, message: str) -> str:
         output = []
-        for letter in self.plainMessage:
+        for letter in message:
             self.udpate_rotor_position()
             letter = self.do_swap_letter(letter)
             for iteration in range(3):
@@ -61,7 +61,7 @@ class Enigma:
             letter = self.do_swap_letter(letter)
             output.append(letter)
 
-        print("".join(output))
+        return "".join(output)
 
         def rotor(self, letter: str, iteration: int = 0, reflector: bool = False, revert: bool = False) -> str:
         alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -110,6 +110,5 @@ rotor_pos = input('Enter {} position of rotor between 0 and 25 separate by white
 enigma.set_initial_rotor_position(rotor_pos)
 
 message = input('Enter your message without whitespace : ')
-enigma.set_plain_message(message)
 
-enigma.output_message()
+enigma.output_message(message)
