@@ -32,18 +32,18 @@ class Enigma:
             self.rotor_position.append(int(rotor))
 
     def udpate_rotor_position(self):
-        if self.rotor_position[0] == 25:
+        if self.rotor_position[2] == 25:
             self.rotor_position[1] = int(self.rotor_position[1]) + 1
-            self.rotor_position[0] = 0
+            self.rotor_position[2] = 0
         else:
-            self.rotor_position[0] = int(self.rotor_position[0]) + 1
+            self.rotor_position[2] = int(self.rotor_position[2]) + 1
 
         if self.rotor_position[1] == 25:
-            self.rotor_position[2] = int(self.rotor_position[2]) + 1
+            self.rotor_position[0] = int(self.rotor_position[0]) + 1
             self.rotor_position[1] = 0
 
-        if self.rotor_position[2] == 25:
-            self.rotor_position[2] = 0
+        if self.rotor_position[0] == 25:
+            self.rotor_position[0] = 0
 
     def set_plain_message(self, plain_message: str):
         self.plainMessage = plain_message
@@ -63,15 +63,15 @@ class Enigma:
 
         print("".join(output))
 
-    def rotor(self, letter: str, iteration: int = 0, reflector: bool = False, revert: bool = False) -> str:
+        def rotor(self, letter: str, iteration: int = 0, reflector: bool = False, revert: bool = False) -> str:
         alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-        rotor_choice = self.rotor_place[iteration]
-        rotor_position = self.rotor_position[iteration]
+        rotor_choice = self.rotor_place
+        rotor_position = self.rotor_position
 
         if not revert:
             rotor_choice = self.rotor_place[::-1]
-            rotor_position = self.rotor_position.reverse()
+            rotor_position = self.rotor_position[::-1]
 
         if reflector:
             rotor_choice = [self.reflector]
@@ -83,7 +83,7 @@ class Enigma:
             return rotor_choice[iteration][alphabet.index(letter) + int(rotor_position[iteration]) - 26]
 
         if revert:
-            return alphabet[rotor_choice.index(letter) - int(rotor_position[iteration])]
+            return alphabet[rotor_choice[iteration].index(letter) - int(rotor_position[iteration])]
         return rotor_choice[iteration][alphabet.index(letter) + int(rotor_position[iteration])]
 
     def do_swap_letter(self, letter: str) -> str:
