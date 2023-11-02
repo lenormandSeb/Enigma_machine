@@ -1,16 +1,17 @@
 class Enigma:
-    available_rotor = [('JGDQOXUSCAMIFRVTPNEWKBLZYH'), ('NTZPSFBOKMWRCJDIVLAEYUXHGQ'), ('JVIUBHTCDYAKEQZPOSGXNRMWFL')]
-    reflector = ('QYHOGNECVPUZTFDJAXWMKISRBL')
-
     def __init__(self):
         self.plainMessage = None
         self.plugBoard = {}
         self.rotor_place = []
         self.rotor_position = []
+        self.reflector = []
 
-    def set_initial_rotor_place(self, rotor_list):
+    def set_initial_rotor_place(self, rotor_list, rotor):
         for r_p in rotor_list.split():
-            self.rotor_place.append(self.available_rotor[int(r_p)])
+            self.rotor_place.append(rotor[r_p])
+
+    def set_initial_reflector(self, choice, reflector):
+        self.reflector = reflector[choice]
 
     def set_plugin_board(self, plugin_list):
         if self.is_not_valid_plugin(plugin_list):
@@ -93,22 +94,3 @@ class Enigma:
             if letter.upper() == plug[1]:
                 return plug[0]
         return letter
-
-
-enigma = Enigma()
-print('Choose rotor position between those (rotor are place from right to left):')
-for index, a in enumerate(enigma.available_rotor):
-    print('{0} : {1}'.format(index, a))
-rotor_place = input('Enter order with whitespace : ')
-
-enigma.set_initial_rotor_place(rotor_place)
-
-plugin = input('Enter your pair to swap key with whitespace, 10 pair max (example : AE IO BD) : ')
-enigma.set_plugin_board(plugin)
-
-rotor_pos = input('Enter {} position of rotor between 0 and 25 separate by whitespace, one for each : '.format(len(enigma.available_rotor)))
-enigma.set_initial_rotor_position(rotor_pos)
-
-message = input('Enter your message without whitespace : ')
-
-print(enigma.output_message(message))
