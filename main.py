@@ -21,5 +21,4 @@ rotor_pos = input('Enter 3 position of rotor between 0 and 25 separate by whites
 enigma.set_initial_rotor_position(rotor_pos)
 
 message = input('Enter your message without whitespace : ')
-
 print(enigma.output_message(message))
